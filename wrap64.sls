@@ -1,57 +1,4 @@
-; This is commit 3a0f7ea5e82fdfd35e3c from mosh master, the last code before
-; the framework was switched away from SRFI-64.
-; This can be made portable.
-
-; test.ss - Test
-;
-;   Copyright (c) 2009  Higepon(Taro Minowa)  <higepon@users.sourceforge.jp>
-;
-;   Redistribution and use in source and binary forms, with or without
-;   modification, are permitted provided that the following conditions
-;   are met:
-;
-;   1. Redistributions of source code must retain the above copyright
-;      notice, this list of conditions and the following disclaimer.
-;
-;   2. Redistributions in binary form must reproduce the above copyright
-;      notice, this list of conditions and the following disclaimer in the
-;      documentation and/or other materials provided with the distribution.
-;
-;   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-;   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-;   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-;   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-;   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-;   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
-;   TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-;   PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-;   LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-;   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-;   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-;
-;  $Id: test.ss 621 2008-11-09 06:22:47Z higepon $
-
-#|
-    Title: Unit Testing
-
-    Defines a set of functions to write test scripts.
-
-    (mosh test) uses (srfi :64 testing) as backend.
-
-    Example:
-    (start code)
-    (import (rnrs)
-            (mosh test)
-      (test-begin "number predicate")
-      (test-false (number? 'a))
-      (test-end))
-    (end code)
-
-    library: (mosh test)
-
-    Unit Testing library
-|#
-(library (mosh test)
+(library (sistim wrap64)
   (export    test-true test-false test-null test-external-rep test-no-error;; mosh only
    test-begin test-not-match-name
    test-end test-assert test-eqv test-eq test-equal
@@ -364,13 +311,13 @@
 (define-syntax with-color
   (lambda (x)
     (syntax-case x ()
-      [(_ color expr more ...)
+      ((_ color expr more ...)
        (if (string=? (host-os) "win32")
            #'(begin expr more ...)
            #'(dynamic-wind
                  (lambda () (display color))
                  (lambda () expr more ...)
-                 (lambda () (display "\x1b;[m")))]))))
+                 (lambda () (display "\x1b;[m"))))))))
 
 (define-syntax with-color-green
   (lambda (x)
