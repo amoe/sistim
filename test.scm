@@ -1,5 +1,6 @@
 (import (rnrs)
-        (sistim wrap64))
+        (sistim wrap64)
+        (sistim condition-formatter))
 
 ;; Initialize and give a name to a simple testsuite.
 (test-begin "vec-test")
