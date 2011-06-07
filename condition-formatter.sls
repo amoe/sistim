@@ -41,7 +41,7 @@
 
   (define (condition->who con)
     (if (who-condition? con)
-        (condition-who con)
+        (format "~s" (condition-who con))
         #f))
 
   (define (condition->type con)
