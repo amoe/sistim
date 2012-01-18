@@ -4,7 +4,8 @@
 
 (library (sistim util)
   (export say
-          slurp)
+          slurp
+          percentage)
   (import (rnrs))
 
   (define (say msg)
@@ -12,4 +13,8 @@
     (newline))
 
   (define (slurp file)
-    (call-with-input-file file get-string-all)))
+    (call-with-input-file file get-string-all))
+
+  (define (percentage a b)
+    (inexact (* (/ a b) 100))))
+
