@@ -3,4 +3,5 @@ exclude.rsf
 sistim.mk
 makefile
 _darcs
+.git
 test.scm
