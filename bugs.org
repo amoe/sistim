@@ -1,0 +1,6 @@
+SISTIM BUGS
+===========
+
+* (test-group "foo" (test-assert #t)) => error in nmosh
+Actually, this is not a valid use, because you need to call test-begin first,
+but it should still give a better error message.
